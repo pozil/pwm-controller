@@ -1,0 +1,16 @@
+.DS_Store
+.package-lock.json
+public/assets
+public/scripts/bundle.min.js
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# dotenv environment variables file
+.env
+
