@@ -54,7 +54,7 @@ export default class App extends Component {
           <div className='slds-grid slds-wrap slds-m-around_large'>
             {this.state.channels.map(channel => (
               <div className='slds-col slds-size_2-of-12' key={channel.id}>
-                <Slider id={channel.id} label={channel.id} min='0' max='1000' step='10' value={channel.value} onChange={this.onChangeChannel}/>
+                <Slider id={channel.id} label={channel.id} min='0' max='1000' value={channel.value} onChange={this.onChangeChannel}/>
               </div>
             ))}
           </div>
