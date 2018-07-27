@@ -18,3 +18,6 @@ Run this command build the app:<br/>
 
 Run this command to start the app:<br/>
 `npm start`
+
+You can then access the app using a web browser:<br/>
+`http://RASPBERRY_PI_IP:8080/`
