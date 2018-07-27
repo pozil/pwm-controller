@@ -13,7 +13,7 @@ Follow [these steps](http://ozzmaker.com/i2c/) to enable it while ignoring the P
 
 The app can **only be installed or built on a Raspberry Pi**. Installing it or building it in any other environement will fail due to the lack of i2c support.
 
-Run this command build the app:<br/>
+Run this command to build the app:<br/>
 `npm install && npm run build`
 
 Run this command to start the app:<br/>
