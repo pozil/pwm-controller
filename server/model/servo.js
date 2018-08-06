@@ -1,5 +1,3 @@
-//const db = require('../util/db.js');
-
 module.exports = class Servo {
   
   /**

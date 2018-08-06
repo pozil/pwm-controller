@@ -21,7 +21,7 @@ process.on('warning', e => console.warn(e.stack));
 process.on('unhandledRejection', (reason, p) => {
     LOG.error('Unhandled Rejection at: Promise', p, 'reason:', reason);
 });
-process.on('SIGINT', () => {
+process.once('SIGINT', () => {
     console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
     driver.stop()
       .then(() => process.exit());
