@@ -10,8 +10,7 @@ const driver = new PwmDriver({
   address: 0x40,
   device: '/dev/i2c-1',
   debug: true,
-  i2cDebug: false,
-  isMockDriver: true
+  i2cDebug: false
 });
 
 // Configure logs
