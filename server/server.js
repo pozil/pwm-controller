@@ -1,11 +1,18 @@
 const Winston = require('winston'),
-    PwmDriver = require('adafruit-i2c-pwm-driver'),
+    { PwmDriver } = require('adafruit-i2c-pwm-driver-async'),
     path = require('path'),
     express = require('express'),
     bodyParser = require('body-parser'),
     ServoResource = require('./rest/servo.js');
 
-const driver = PwmDriver({address: 0x40, device: '/dev/i2c-1', debug: true, i2cDebug: false});
+
+const driver = new PwmDriver({
+  address: 0x40,
+  device: '/dev/i2c-1',
+  debug: true,
+  i2cDebug: false,
+  isMockDriver: true
+});
 
 // Configure logs
 Winston.loggers.add('App', {
@@ -40,20 +47,6 @@ app.listen(app.get('port'), () => {
 	console.log('Server started on port ' + app.get('port'));
 });
 
-const sleep = duration => {
-    return new Promise((resolve, reject) => {
-        LOG.debug('Sleep ', duration);
-        setTimeout(() => resolve(), duration);
-    });
-}
-
-// Configure min and max servo pulse lengths
-const servo0Min = 150 // Min pulse length out of 4096
-const servo0Max = 600 // Max pulse length out of 4096
-const servo1Min = 300 // Min pulse length out of 4096
-const servo1Max = 600 // Max pulse length out of 4096
-
-Promise.all([
-    driver.init(),
-    driver.setPWMFreq(50)
-]).catch(console.error);
+driver.init()
+  .then(driver.setPWMFreq(50))
+  .catch(console.error);
