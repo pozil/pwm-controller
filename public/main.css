@@ -1,4 +1,10 @@
 button.icon {
   border: unset;
   background: unset;
+  margin: 0;
+  padding: 0px;
+}
+
+button.icon:first-of-type {
+  margin-left: 5px;
 }

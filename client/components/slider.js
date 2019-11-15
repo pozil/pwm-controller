@@ -7,6 +7,7 @@ export default class Slider extends Component {
     this.state = {
       min: props.min,
       max: props.max,
+      value: props.value
     };
   }
 
@@ -21,6 +22,25 @@ export default class Slider extends Component {
     }
     this.setState({ min, max });
   }
+
+  setValue = () => {
+    let value = parseInt(prompt('New position.\nCurrent value: '+ this.state.value), 10);
+    if (!isNaN(value)) {
+      this.setState({ value });
+      const event = {
+        target: {
+          id: this.props.id,
+          value
+        }
+      };
+      this.props.onChange(event);
+    }
+  }
+
+  onChangeValue = event => {
+    this.setState({ value: event.target.value });
+    this.props.onChange(event);
+  }
   
   render() {
     const { state, props } = this;
@@ -32,14 +52,15 @@ export default class Slider extends Component {
             <span className='slds-slider-label__range'>
               {state.min} - {state.max}
               <button onClick={this.editRange} className="icon">&#9881;</button>
+              <button onClick={this.setValue} className="icon">&#128204;</button>
             </span>
           </span>
         </label>
         <div className='slds-form-element__control'>
           <div className='slds-slider slds-slider_vertical'>
             <input type='range' id={props.id} className='slds-slider__range'
-              min={state.min} max={state.max} value={props.value} step='1' onChange={props.onChange}/>
-            <span className='slds-slider__value' aria-hidden='true'>{props.value}</span>
+              min={state.min} max={state.max} value={state.value} step='1' onChange={this.onChangeValue}/>
+            <span className='slds-slider__value' aria-hidden='true'>{state.value}</span>
           </div>
         </div>
       </div>
